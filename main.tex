@@ -1,0 +1,52 @@
+\documentclass{thesis}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\frontmatter
+\makeToC
+
+\mainmatter
+\renewcommand{\baselinestretch}{1.8}\selectfont
+
+\chapter{Introduction}
+\label{ch:01}
+    \input{./chapter-1/sec-0}
+ 
+\chapter{Methodology}
+\label{ch:02}
+    \input{./chapter-2/sec-0}
+    \section{Methodology: 1}
+    \input{./chapter-2/sec-1}
+    \section{Methodology: 2}
+    \input{./chapter-2/sec-2}
+    \section{Summary}
+    \input{./chapter-2/sec-3}
+
+\chapter{Topic 1}
+\label{ch:03}
+    \input{./chapter-3/sec-0}
+    \section{Experiments}
+    \input{./chapter-3/sec-1}
+    \section{Result and Discussion}
+    \input{./chapter-3/sec-2}
+    \section{Summary}
+    \input{./chapter-3/sec-3}
+
+\chapter{Topic 2}
+\label{ch:04}
+    \input{./chapter-4/sec-0}
+    \section{Experiments}
+    \input{./chapter-4/sec-1}
+    \section{Result and Discussion}
+    \input{./chapter-4/sec-2}
+    \section{Summary}
+    \input{./chapter-4/sec-3}
+
+\chapter{Conclusions and Outlook}
+\label{ch:05}
+    \input{./chapter-5/sec-0}
+
+\makeBib
+
+\end{document}
