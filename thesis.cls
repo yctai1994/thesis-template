@@ -31,7 +31,6 @@
 \newcommand{\cjkDegreeMonth}[1]{\def\@cjkDegreeMonth{#1}}
 \newcommand{\engDegreeMonth}[1]{\def\@engDegreeMonth{#1}}
 
-\newcommand{\engDegree}[1]{\def\@engDegree{#1}}
 \newcommand{\engField}[1]{\def\@engField{#1}}
 \newcommand{\engLocation}[1]{\def\@engLocation{#1}}
 
@@ -39,6 +38,22 @@
 % class and packages
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+\DeclareOption{doctor}{
+    \def\@cjkBookName{博士論文}
+    \def\@engBookFullName{Doctoral Dissertation}
+    \def\@engBookAbbrName{Dissertation}
+    \def\@engDegree{Doctor of Philosophy}
+}
+
+\DeclareOption{master}{
+    \def\@cjkBookName{碩士論文}
+    \def\@engBookFullName{Master Thesis}
+    \def\@engBookAbbrName{Thesis}
+    \def\@engDegree{Master}
+}
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\ProcessOptions\relax % processing of all options declared via \DeclareOption and \DeclareOption*.
 \LoadClass[a4paper, 12pt, oneside]{book}
 
 % For English typing
@@ -153,18 +168,18 @@
 
             \fontsize{18}{27}{\selectfont \@cjkUniversityName} \\
             \fontsize{18}{27}{\selectfont \@cjkInstituteName} \\
-            \fontsize{18}{27}{\selectfont 博士論文} \\
+            \fontsize{18}{27}{\selectfont \@cjkBookName}
 
             \vfill
 
             \fontsize{14}{14}{\selectfont \@engInstituteName} \\
             \fontsize{16}{16}{\selectfont \@engUniversityName} \\
-            \fontsize{16}{16}{\selectfont Doctoral Dissertation} \\
+            \fontsize{16}{16}{\selectfont \@engBookFullName}
 
             \vfill
 
             \fontsize{18}{18}{\selectfont \@cjkTitle} \\[0.5\baselineskip]
-            \fontsize{18}{18}{\selectfont \@engTitle} \\
+            \fontsize{18}{18}{\selectfont \@engTitle}
 
             \vfill
 
@@ -180,7 +195,7 @@
             \vfill
             \fontsize{18}{18}{\selectfont \@cjkDegreeYear\ \@cjkDegreeMonth} \\
             \vspace{1.5\baselineskip}
-            \fontsize{18}{18}{\selectfont \@engDegreeMonth\ \@engDegreeYear} \\
+            \fontsize{18}{18}{\selectfont \@engDegreeMonth\ \@engDegreeYear}
         \end{doublespacing}
     \end{center}
 
@@ -194,21 +209,21 @@
 
     \begin{center}
         \begin{doublespacing}
-
             \fontsize{18}{18}{\selectfont \@cjkTitle} \\
-            \fontsize{18}{18}{\selectfont \@engTitle} \\
-
+            \fontsize{18}{18}{\selectfont \@engTitle}
         \end{doublespacing}
 
         \vfill
 
         \renewcommand{\arraystretch}{1.5}
-        \fontsize{14}{14}{\selectfont
-            \begin{tabularx}{\textwidth}{@{}p{2.5cm}@{}Xl@{}}
-                \makebox[2.515cm][s]{研{\hfill}究{\hfill}生：}&\@cjkStudentName\hfill Student:&\@engStudentName \\
-                \makebox[2.515cm][s]{指{\hfill}導{\hfill}教{\hfill}授：}&\@cjkAdvisorName\ 博士\hfill Advisor:&Dr.\ \@engAdvisorName \\
-            \end{tabularx}
-        }
+            \fontsize{14}{14}{\selectfont
+                \begin{tabularx}{\textwidth}{@{}p{2.5cm}@{}Xl@{}}
+                    \makebox[2.515cm][s]{研{\hfill}究{\hfill}生：}&
+                        \@cjkStudentName\hfill Student:&\@engStudentName \\
+                    \makebox[2.515cm][s]{指{\hfill}導{\hfill}教{\hfill}授：}&
+                        \@cjkAdvisorName\ 博士\hfill Advisor:&Dr.\ \@engAdvisorName
+                \end{tabularx}
+            }
         \renewcommand{\arraystretch}{1}
 
         \vfill
@@ -216,20 +231,21 @@
         \begin{doublespacing}
             \fontsize{14}{14}{\selectfont \@cjkUniversityName} \\
             \fontsize{14}{14}{\selectfont \@cjkInstituteName} \\
-            \fontsize{14}{14}{\selectfont 博士論文} \\
+            \fontsize{14}{14}{\selectfont \@cjkBookName}
         \end{doublespacing}
 
         \vfill
 
         \fontsize{14}{14}{\selectfont
-            A Dissertation \\
+            A \@engBookAbbrName \\
             Submitted to \@engInstituteName \\
             \@engCollegeName \\
             \@engUniversityName \\
             in partial Fulfillment of the Requirements \\
             for the Degree of \\
-            \@engDegree
-            \ifthenelse{\equal{\@engField}{}}{}{\\ in \\ \@engField}
+            \@engDegree \\
+            in \\
+            \@engField
         }
 
         \vfill
@@ -237,7 +253,6 @@
         \fontsize{14}{14}{\selectfont \@engDegreeMonth\ \@engDegreeYear} \\
         \fontsize{14}{14}{\selectfont \@engLocation} \\
         \vspace{1.5\baselineskip}
-        \fontsize{14}{14}{\selectfont \@cjkDegreeYear\ \@cjkDegreeMonth} \\
-
+        \fontsize{14}{14}{\selectfont \@cjkDegreeYear\ \@cjkDegreeMonth}
     \end{center}
 }
