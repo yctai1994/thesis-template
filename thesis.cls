@@ -1,29 +1,69 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}
-\gdef\@ClassName{thesis}
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% macro definitions
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+\newcommand{\cjkFont}[1]{ \setCJKmainfont{#1} }
+
+\newcommand{\cjkTitle}[1]{\def\@cjkTitle{#1}}
+\newcommand{\engTitle}[1]{\def\@engTitle{#1}}
+
+\newcommand{\cjkUniversityName}[1]{\def\@cjkUniversityName{#1}}
+\newcommand{\engUniversityName}[1]{\def\@engUniversityName{#1}}
+
+\newcommand{\cjkCollegeName}[1]{\def\@cjkCollegeName{#1}}
+\newcommand{\engCollegeName}[1]{\def\@engCollegeName{#1}}
+
+\newcommand{\cjkInstituteName}[1]{\def\@cjkInstituteName{#1}}
+\newcommand{\engInstituteName}[1]{\def\@engInstituteName{#1}}
+
+\newcommand{\cjkStudentName}[1]{\def\@cjkStudentName{#1}}
+\newcommand{\engStudentName}[1]{\def\@engStudentName{#1}}
+
+\newcommand{\cjkAdvisorName}[1]{\def\@cjkAdvisorName{#1}}
+\newcommand{\engAdvisorName}[1]{\def\@engAdvisorName{#1}}
+
+\newcommand{\cjkDegreeYear}[1]{\def\@cjkDegreeYear{#1}}
+\newcommand{\engDegreeYear}[1]{\def\@engDegreeYear{#1}}
+
+\newcommand{\cjkDegreeMonth}[1]{\def\@cjkDegreeMonth{#1}}
+\newcommand{\engDegreeMonth}[1]{\def\@engDegreeMonth{#1}}
+
+\newcommand{\engDegree}[1]{\def\@engDegree{#1}}
+\newcommand{\engField}[1]{\def\@engField{#1}}
+\newcommand{\engLocation}[1]{\def\@engLocation{#1}}
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% class and packages
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \LoadClass[a4paper, 12pt, oneside]{book}
 
-\RequirePackage{lipsum}
+% For English typing
 \RequirePackage{libertine}
 
 % For CJK typing
 \RequirePackage[BoldFont, SlantFont, CJKchecksingle, CJKmath = true]{xeCJK}
 
+% Using math tools, e.g. "equation" environment
+\RequirePackage{amsmath}
+% For special math symbol
+\RequirePackage{amssymb}
+% Specail Font in math zone
+\RequirePackage{amsfonts}
+\RequirePackage{unicode-math}
+\setmathfont[Scale = MatchUppercase]{LibertinusMath-Regular.otf}
+
 % To set space between lines
 \RequirePackage{setspace}
-\setlength{\parindent}{2em} % Set indent width for first line in a paragraph to two space
-\setlength{\parskip}{0.5\baselineskip} % Set space between paragraphs
 
 % For exntend used of hypertext in the document(include \phantomsection)
 \RequirePackage{hyperref}
 
 % For custom header and footer of
 \RequirePackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{} % Clear origin header and footer configuration
-\renewcommand{\headrulewidth}{0pt}
-\cfoot{\thepage}
 
 % Alternative headings for Toc, LoF, LoT
 \RequirePackage{titletoc}
@@ -32,21 +72,12 @@
 
 % For page layout
 \RequirePackage[a4paper]{geometry}
-\geometry{ a4paper, hmargin = 2cm, vmargin = 2.5cm, footskip = 1cm }
 
 % Indent first paragraph
 \RequirePackage{indentfirst}
+
 % To config figures
 \RequirePackage{graphicx}
-% Using math tools, e.g. "equation" environment
-\RequirePackage{amsmath}
-% For special math symbol
-\RequirePackage{amssymb}
-
-% Specail Font in math zone
-\RequirePackage{amsfonts}
-\RequirePackage{unicode-math}
-\setmathfont[Scale = MatchUppercase]{LibertinusMath-Regular.otf}
 
 % For "tabularx" environment
 \RequirePackage{tabularx}
@@ -80,41 +111,23 @@
 }
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-% macro definitions
+% page layout
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-\newcommand{\cjkFont}[1]{ \setCJKmainfont{#1} }
 
-\newcommand{\cjkTitle}[1]{\def\@cjkTitle{#1}}
-\newcommand{\engTitle}[1]{\def\@engTitle{#1}}
+\geometry{ a4paper, hmargin = 2cm, vmargin = 2.5cm, footskip = 1cm }
 
-\newcommand{\cjkUniversityName}[1]{\def\@cjkUniversityName{#1}}
-\newcommand{\engUniversityName}[1]{\def\@engUniversityName{#1}}
+\setlength{\parindent}{2em} % Set indent width for first line in a paragraph to two space
+\setlength{\parskip}{0.5\baselineskip} % Set space between paragraphs
 
-\newcommand{\cjkCollegeName}[1]{\def\@cjkCollegeName{#1}}
-\newcommand{\engCollegeName}[1]{\def\@engCollegeName{#1}}
-
-\newcommand{\cjkInstituteName}[1]{\def\@cjkInstituteName{#1}}
-\newcommand{\engInstituteName}[1]{\def\@engInstituteName{#1}}
-
-\newcommand{\cjkStudentName}[1]{\def\@cjkStudentName{#1}}
-\newcommand{\engStudentName}[1]{\def\@engStudentName{#1}}
-
-\newcommand{\cjkAdvisorName}[1]{\def\@cjkAdvisorName{#1}}
-\newcommand{\engAdvisorName}[1]{\def\@engAdvisorName{#1}}
-
-\newcommand{\cjkDegreeYear}[1]{\def\@cjkDegreeYear{#1}}
-\newcommand{\engDegreeYear}[1]{\def\@engDegreeYear{#1}}
-
-\newcommand{\cjkDegreeMonth}[1]{\def\@cjkDegreeMonth{#1}}
-\newcommand{\engDegreeMonth}[1]{\def\@engDegreeMonth{#1}}
-
-\newcommand{\engDegree}[1]{\def\@engDegree{#1}}
-\newcommand{\engField}[1]{\def\@engField{#1}}
-\newcommand{\engLocation}[1]{\def\@engLocation{#1}}
+\pagestyle{fancy}
+\fancyhf{} % clear origin header and footer configuration
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{\thepage}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 % special page generators
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 \def\makeToC{
     \cleardoublepage
     \phantomsection
