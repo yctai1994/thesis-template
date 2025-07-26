@@ -34,6 +34,7 @@
 \newcommand{\engField}[1]{\def\@engField{#1}}
 \newcommand{\engLocation}[1]{\def\@engLocation{#1}}
 
+\newcommand{\cjkKeywords}[1]{\def\@cjkKeywords{#1}}
 \newcommand{\engKeywords}[1]{\def\@engKeywords{#1}}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -259,6 +260,49 @@
     \end{center}
 }
 
+\newenvironment{cjkAbstract}{
+    \cleardoublepage
+    \renewcommand{\baselinestretch}{1.2}\selectfont
+
+    \begin{center}
+        \begin{doublespacing}
+            \fontsize{18}{18}{\selectfont \Large \bf \@cjkTitle} \\
+        \end{doublespacing}
+    \end{center}
+    
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \fontsize{14}{14}{\selectfont
+            \begin{tabularx}{\textwidth}{@{}p{2.2cm}@{}Xl@{}}
+                {研究生：}&\@cjkStudentName\hfill{指導教授：}&\@cjkAdvisorName\ 博士
+            \end{tabularx}
+        }
+    \end{center}
+    
+    \begin{center}
+        \renewcommand{\arraystretch}{1}
+        \begin{doublespacing}
+            \fontsize{14}{14}{\selectfont \@cjkUniversityName} \\
+            \fontsize{14}{14}{\selectfont \@cjkInstituteName} \\
+        \end{doublespacing}
+    \end{center}
+    
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\textbf{まとめ}}
+
+    \begin{center}
+        \large\bf まとめ
+    \end{center}
+    \par
+} {
+}
+
+\def\cjkAbstractKeywords{
+    \begin{flushleft}
+        {\textbf{キーワード}：\@cjkKeywords}
+    \end{flushleft}
+}
+
 \newenvironment{engAbstract}{
     \cleardoublepage
     \renewcommand{\baselinestretch}{1.2}\selectfont
@@ -298,6 +342,6 @@
 
 \def\engAbstractKeywords{
     \begin{flushleft}
-        {\textbf{Keywords}: \@engKeywords}
+        {\textbf{Keywords}:\@engKeywords}
     \end{flushleft}
 }
