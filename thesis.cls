@@ -34,6 +34,8 @@
 \newcommand{\engField}[1]{\def\@engField{#1}}
 \newcommand{\engLocation}[1]{\def\@engLocation{#1}}
 
+\newcommand{\engKeywords}[1]{\def\@engKeywords{#1}}
+
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 % class and packages
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -255,4 +257,47 @@
         \vspace{1.5\baselineskip}
         \fontsize{14}{14}{\selectfont \@cjkDegreeYear\ \@cjkDegreeMonth}
     \end{center}
+}
+
+\newenvironment{engAbstract}{
+    \cleardoublepage
+    \renewcommand{\baselinestretch}{1.2}\selectfont
+
+    \begin{center}
+        \begin{doublespacing}
+            \fontsize{18}{18}{\selectfont \Large \bf \@engTitle} \\
+        \end{doublespacing}
+    \end{center}
+    
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \fontsize{14}{14}{\selectfont
+            \begin{tabularx}{\textwidth}{@{}p{2.2cm}@{}Xl@{}}
+                {Student}:&\@engStudentName\hfill{Advisor}:&{Dr.\ \@engAdvisorName} 
+            \end{tabularx}
+        }
+    \end{center}
+    
+    \begin{center}
+        \renewcommand{\arraystretch}{1}
+        \begin{doublespacing}
+            \fontsize{14}{14}{\selectfont \@engUniversityName} \\
+            \fontsize{14}{14}{\selectfont \@engInstituteName} \\
+        \end{doublespacing}
+    \end{center}
+    
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\textbf{Abstract}}
+
+    \begin{center}
+        \large\bf Abstract
+    \end{center}
+    \par
+} {
+}
+
+\def\engAbstractKeywords{
+    \begin{flushleft}
+        {\textbf{Keywords}: \@engKeywords}
+    \end{flushleft}
 }
